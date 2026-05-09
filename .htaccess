@@ -1,0 +1,20 @@
+# Configuración para descargas de APK
+AddType application/vnd.android.package-archive .apk
+
+<Files *.apk>
+    ForceType application/octet-stream
+    Header set Content-Disposition attachment
+</Files>
+
+# Habilitar compresión GZIP
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
+</IfModule>
+
+# Cache para assets
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType video/mp4 "access plus 1 month"
+</IfModule>
